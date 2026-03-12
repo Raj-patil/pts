@@ -20,21 +20,7 @@ app.use((req, res, next) => {
 });
 
 // Database connection
-const db = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database: process.env.DB_NAME,
-    port: 3306
-});
-
-db.connect((err) => {
-    if (err) {
-        console.error('CRITICAL: Database connection failed:', err.message);
-    } else {
-        console.log('SUCCESS: Connected to MySQL database');
-    }
-});
+const db = require('./db');
 
 // Health check
 app.get('/api/ping', (req, res) => {
