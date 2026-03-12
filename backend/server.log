@@ -1,0 +1,61 @@
+[2026-03-12T10:17:37.556Z] POST /api/tins {"name":"ravi mils ","tin_type":"A-L Kachha","quantity":672,"price":24,"total_amount":16128,"status":"inward","entry_date":"2026-03-12"}
+[2026-03-12T10:17:37.589Z] GET /api/tins?name=ravi%20mils%20 
+[2026-03-12T10:17:37.613Z] GET /api/tins?name=ravi%20mils%20 
+[2026-03-12T10:17:51.726Z] GET /api/tins 
+[2026-03-12T10:20:53.544Z] GET /api/tins 
+[2026-03-12T10:21:32.825Z] POST /api/tins {"name":"shakti mils depo","tin_type":"A-L Kachha","quantity":500,"price":28,"total_amount":14000,"status":"inward","entry_date":"2026-03-12"}
+[2026-03-12T10:21:32.849Z] GET /api/tins?name=shakti%20mils%20depo 
+[2026-03-12T10:21:32.875Z] GET /api/tins?name=shakti%20mils%20depo 
+[2026-03-12T10:21:38.580Z] GET /api/tins?name=shakti%20mils%20depo 
+[2026-03-12T10:21:51.822Z] GET /api/tins 
+[2026-03-12T10:21:53.910Z] GET /api/tins 
+[2026-03-12T10:23:28.673Z] GET /api/tins 
+[2026-03-12T10:23:51.372Z] GET /api/tins 
+[2026-03-12T10:24:26.216Z] GET /api/tins 
+[2026-03-12T10:26:15.753Z] POST /api/tins {"name":"vinod bhai","tin_type":"Lite Kachha","quantity":520,"price":22,"total_amount":11440,"status":"outward","entry_date":"2026-03-12"}
+[2026-03-12T10:26:15.766Z] GET /api/tins?tin_type=Lite%20Kachha 
+[2026-03-12T10:26:15.819Z] GET /api/tins?tin_type=Lite%20Kachha 
+[2026-03-12T10:26:24.972Z] GET /api/tins 
+[2026-03-12T10:38:16.379Z] GET /api/expenses 
+[2026-03-12T10:38:31.444Z] POST /api/expenses {"expense_date":"2026-03-12","paid_to":"light bill","amount":5000}
+[2026-03-12T10:38:37.103Z] POST /api/expenses {"expense_date":"2026-03-12","paid_to":"light bill","amount":5000}
+[2026-03-12T10:41:46.516Z] GET /api/expenses 
+[2026-03-12T10:41:57.824Z] POST /api/expenses {"expense_date":"2026-03-12","paid_to":"light bill","amount":5000}
+[2026-03-12T10:41:57.856Z] GET /api/expenses 
+[2026-03-12T10:43:18.575Z] POST /api/expenses {"expense_date":"2026-03-12","paid_to":"water bill","amount":2000}
+[2026-03-12T10:43:18.587Z] GET /api/expenses 
+[2026-03-12T10:57:24.874Z] POST /api/tins {"name":"kailash mil oil","tin_type":"S-T Wash","quantity":1500,"price":35,"total_amount":52500,"status":"Cash in","entry_date":"2026-03-12"}
+[2026-03-12T10:57:24.893Z] GET /api/tins?tin_type=S-T%20Wash 
+[2026-03-12T10:57:24.918Z] GET /api/tins?tin_type=S-T%20Wash 
+[2026-03-12T10:57:29.473Z] GET /api/tins 
+[2026-03-12T11:22:51.580Z] GET /api/expenses 
+[2026-03-12T11:22:58.546Z] GET /api/revenue 
+[2026-03-12T11:29:09.546Z] GET /api/revenue 
+[2026-03-12T11:37:59.661Z] GET /api/revenue 
+[2026-03-12T11:40:25.189Z] GET /api/revenue 
+[2026-03-12T11:40:25.703Z] GET /api/revenue 
+[2026-03-12T11:40:47.935Z] GET /api/revenue 
+[2026-03-12T11:41:04.915Z] GET /api/revenue 
+[2026-03-12T11:43:51.720Z] GET /api/revenue 
+[2026-03-12T11:45:12.649Z] GET /api/revenue 
+[2026-03-12T11:46:31.605Z] POST /api/login {"email":"rp686418@gmail.com","password":"Raj@8601"}
+[2026-03-12T11:46:39.235Z] GET /api/tins 
+[2026-03-12T11:46:49.303Z] GET /api/revenue 
+[2026-03-12T11:47:02.003Z] GET /api/expenses 
+[2026-03-12T11:47:17.270Z] GET /api/tins 
+[2026-03-12T11:47:18.397Z] GET /api/revenue 
+[2026-03-12T11:47:20.850Z] GET /api/expenses 
+[2026-03-12T11:47:32.818Z] GET /api/tins?tin_type=A-L%20Kachha 
+[2026-03-12T11:47:39.301Z] GET /api/tins 
+[2026-03-12T11:47:40.966Z] GET /api/revenue 
+[2026-03-12T11:49:23.886Z] GET /api/revenue 
+[2026-03-12T11:49:54.294Z] GET /api/revenue 
+[2026-03-12T11:49:55.486Z] GET /api/revenue 
+[2026-03-12T11:49:56.022Z] GET /api/revenue 
+[2026-03-12T11:49:56.247Z] GET /api/revenue 
+[2026-03-12T11:50:03.558Z] GET /api/tins 
+[2026-03-12T11:50:05.050Z] GET /api/revenue 
+[2026-03-12T11:50:06.613Z] GET /api/expenses 
+[2026-03-12T11:50:23.551Z] GET /api/tins 
+[2026-03-12T11:51:58.002Z] GET /api/revenue 
+[2026-03-12T11:51:59.500Z] GET /api/tins 
