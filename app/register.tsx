@@ -19,7 +19,7 @@ import {
 const { width } = Dimensions.get('window');
 
 // Update with your local IP if testing on mobile
-const API_URL = Platform.OS === 'web' ? 'http://127.0.0.1:5001/api' : 'http://192.168.1.7:5001/api';
+const API_URL = Platform.OS === 'web' ? 'http://127.0.0.1:5001/api' : 'http://192.168.0.67:5001/api';
 
 export default function RegisterScreen() {
     const [name, setName] = useState('');
