@@ -67,10 +67,28 @@ export default function TabLayout() {
       {isWeb && <WebNavbar />}
       <Tabs
         screenOptions={{
-          tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+          tabBarActiveTintColor: '#dc3545',
+          tabBarInactiveTintColor: '#adb5bd',
           headerShown: false,
           tabBarButton: HapticTab,
-          tabBarStyle: isWeb ? { display: 'none' } : { height: 60, paddingBottom: 10 },
+          tabBarStyle: isWeb ? { display: 'none' } : { 
+            height: Platform.OS === 'ios' ? 85 : 70, 
+            paddingBottom: Platform.OS === 'ios' ? 30 : 12,
+            paddingTop: 10,
+            backgroundColor: '#fff',
+            borderTopWidth: 1,
+            borderTopColor: '#f1f3f5',
+            elevation: 10,
+            shadowColor: '#000',
+            shadowOffset: { width: 0, height: -2 },
+            shadowOpacity: 0.1,
+            shadowRadius: 10,
+          },
+          tabBarLabelStyle: {
+            fontSize: 11,
+            fontWeight: '700',
+            marginTop: -5,
+          }
         }}>
         <Tabs.Screen
           name="index"

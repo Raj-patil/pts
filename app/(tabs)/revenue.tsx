@@ -1,5 +1,5 @@
 import { LinearGradient } from 'expo-linear-gradient';
-import { TrendingUp, ArrowUpRight, ArrowDownRight, RefreshCw, BarChart3, Search, Database, Calendar, PieChart } from 'lucide-react-native';
+import { TrendingUp, ArrowUpRight, ArrowDownRight, RefreshCw, BarChart3, Search, Database, Calendar, PieChart, ChevronLeft } from 'lucide-react-native';
 import React, { useEffect, useState } from 'react';
 import {
     ActivityIndicator,
@@ -19,7 +19,7 @@ import { useFocusEffect } from '@react-navigation/native';
 
 const { width } = Dimensions.get('window');
 const isWeb = Platform.OS === 'web';
-const API_URL = Platform.OS === 'web' ? 'http://localhost:5001/api' : 'http://192.168.0.67:5001/api';
+const API_URL = Platform.OS === 'web' ? 'http://localhost:5001/api' : 'http://192.168.1.7:5001/api';
 
 type Transaction = {
     id: number;
@@ -128,8 +128,8 @@ export default function RevenueScreen() {
                             return (
                                 <View key={idx} style={styles.barGroup}>
                                     <View style={styles.barStack}>
-                                        <View style={[styles.bar, { height: creditHeight, backgroundColor: '#28a745', borderTopLeftRadius: 4, borderTopRightRadius: 4 }]} />
-                                        <View style={[styles.bar, { height: debitHeight, backgroundColor: '#dc3545', borderTopLeftRadius: 4, borderTopRightRadius: 4, marginLeft: 2 }]} />
+                                        <View style={[styles.bar, { height: creditHeight, backgroundColor: '#28a745', borderTopLeftRadius: 6, borderTopRightRadius: 6 }]} />
+                                        <View style={[styles.bar, { height: debitHeight, backgroundColor: '#dc3545', borderTopLeftRadius: 6, borderTopRightRadius: 6 }]} />
                                     </View>
                                     <Text style={styles.barLabel}>{dayLabel}</Text>
                                 </View>
@@ -219,8 +219,9 @@ export default function RevenueScreen() {
     const renderDetails = () => (
         <View style={styles.detailsContainer}>
             <View style={styles.detailsHeader}>
-                <TouchableOpacity onPress={() => setViewType('overview')} style={styles.backButton}>
-                    <Text style={styles.backButtonText}>← Back to Overview</Text>
+                <TouchableOpacity onPress={() => setViewType('overview')} style={styles.detailsBackButton}>
+                    <ChevronLeft size={20} color="#dc3545" />
+                    <Text style={styles.detailsBackText}>Back to Overview</Text>
                 </TouchableOpacity>
                 <Text style={styles.detailsTitle}>
                     {viewType === 'credited' ? 'Credited History' : 'Debited History'}
@@ -275,10 +276,14 @@ export default function RevenueScreen() {
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar barStyle="dark-content" />
+            
             <View style={styles.header}>
-                <Text style={styles.headerTitle}>Revenue Dashboard</Text>
+                <View style={styles.headerContent}>
+                    <Text style={styles.headerTitle}>Revenue</Text>
+                    <Text style={styles.headerSub}>Earnings & analytics</Text>
+                </View>
                 <TouchableOpacity onPress={fetchRevenue} style={styles.refreshButton}>
-                    <RefreshCw size={20} color="#dc3545" />
+                    <RefreshCw size={18} color="#dc3545" />
                 </TouchableOpacity>
             </View>
 
@@ -296,69 +301,113 @@ export default function RevenueScreen() {
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, backgroundColor: '#f8f9fa' },
-    header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 20, height: 70, backgroundColor: '#fff', borderBottomWidth: 1, borderBottomColor: '#f1f3f5' },
-    headerTitle: { fontSize: 20, fontWeight: '800', color: '#343a40' },
-    refreshButton: { width: 40, height: 40, borderRadius: 20, backgroundColor: '#fff5f5', justifyContent: 'center', alignItems: 'center' },
+    container: { flex: 1, backgroundColor: '#f1f3f5' },
+    header: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingHorizontal: 25,
+        paddingVertical: 15,
+        paddingTop: Platform.OS === 'android' ? (StatusBar.currentHeight || 0) + 15 : 15,
+        backgroundColor: '#fff',
+        borderBottomWidth: 1,
+        borderBottomColor: '#e9ecef',
+    },
+    headerContent: { flex: 1 },
+    headerTitle: {
+        fontSize: 24,
+        fontWeight: '900',
+        color: '#1a1a1a',
+        letterSpacing: -0.5,
+    },
+    headerSub: {
+        fontSize: 13,
+        color: '#6c757d',
+        fontWeight: '600',
+        marginTop: 2,
+    },
+    refreshButton: {
+        width: 44,
+        height: 44,
+        borderRadius: 22,
+        backgroundColor: '#fff5f5',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth: 1,
+        borderColor: '#ffe3e3',
+    },
     content: { flex: 1, padding: 20 },
-    mainCard: { borderRadius: 25, overflow: 'hidden', marginBottom: 20, elevation: 8 },
-    cardGradient: { padding: 25 },
-    cardHeader: { flexDirection: 'row', alignItems: 'center', marginBottom: 15 },
-    iconCircle: { width: 45, height: 45, borderRadius: 22.5, backgroundColor: '#fff', justifyContent: 'center', alignItems: 'center', marginRight: 12 },
-    cardLabel: { color: 'rgba(255,255,255,0.8)', fontSize: 16, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1 },
-    cardAmount: { color: '#fff', fontSize: 36, fontWeight: '900', marginBottom: 10 },
-    cardFooter: { borderTopWidth: 1, borderTopColor: 'rgba(255,255,255,0.2)', paddingTop: 15 },
-    footerText: { color: 'rgba(255,255,255,0.6)', fontSize: 13, fontWeight: '600' },
-    row: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 20 },
-    statCard: { width: (width - 60) / 2, backgroundColor: '#fff', borderRadius: 20, padding: 18, elevation: 2 },
-    statIcon: { width: 36, height: 36, borderRadius: 18, justifyContent: 'center', alignItems: 'center', marginBottom: 12 },
-    statLabel: { fontSize: 14, fontWeight: '700', color: '#6c757d', marginBottom: 6 },
-    statAmount: { fontSize: 17, fontWeight: '800', marginBottom: 4 },
-    statSub: { fontSize: 9, color: '#adb5bd', fontWeight: '600' },
+    mainCard: { borderRadius: 30, overflow: 'hidden', marginBottom: 25, elevation: 12, shadowColor: '#dc3545', shadowOffset: { width: 0, height: 10 }, shadowOpacity: 0.3, shadowRadius: 20 },
+    cardGradient: { padding: 30 },
+    cardHeader: { flexDirection: 'row', alignItems: 'center', marginBottom: 20 },
+    iconCircle: { width: 48, height: 48, borderRadius: 24, backgroundColor: '#fff', justifyContent: 'center', alignItems: 'center', marginRight: 15, shadowColor: '#000', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.1, shadowRadius: 8 },
+    cardLabel: { color: 'rgba(255,255,255,0.7)', fontSize: 13, fontWeight: '800', textTransform: 'uppercase', letterSpacing: 1.5 },
+    cardAmount: { color: '#fff', fontSize: 38, fontWeight: '900', marginBottom: 15, letterSpacing: -1 },
+    cardFooter: { borderTopWidth: 1, borderTopColor: 'rgba(255,255,255,0.15)', paddingTop: 20 },
+    footerText: { color: 'rgba(255,255,255,0.7)', fontSize: 13, fontWeight: '600' },
+    
+    row: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 25 },
+    statCard: { width: (width - 60) / 2, backgroundColor: '#fff', borderRadius: 24, padding: 20, elevation: 4, shadowColor: '#000', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.05, shadowRadius: 10, borderWidth: 1, borderColor: '#fff' },
+    statIcon: { width: 40, height: 40, borderRadius: 14, justifyContent: 'center', alignItems: 'center', marginBottom: 15 },
+    statLabel: { fontSize: 13, fontWeight: '800', color: '#adb5bd', marginBottom: 8, textTransform: 'uppercase', letterSpacing: 0.5 },
+    statAmount: { fontSize: 18, fontWeight: '900', marginBottom: 6 },
+    statSub: { fontSize: 10, color: '#dc3545', fontWeight: '700', textTransform: 'uppercase' },
     
     // Chart Styles
-    chartCard: { backgroundColor: '#fff', borderRadius: 25, padding: 20, marginBottom: 25, elevation: 3 },
-    chartHeaderRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 },
-    chartTitle: { fontSize: 16, fontWeight: '800', color: '#343a40' },
-    legendRow: { flexDirection: 'row', gap: 10 },
-    legendItem: { flexDirection: 'row', alignItems: 'center', gap: 4 },
-    legendDot: { width: 8, height: 8, borderRadius: 4 },
-    legendText: { fontSize: 12, color: '#666', fontWeight: '600' },
-    chartBody: { flexDirection: 'row', height: 180, alignItems: 'center' },
-    yAxis: { width: 60, height: 150, justifyContent: 'space-between', paddingRight: 8 },
-    axisLabel: { fontSize: 10, color: '#999', textAlign: 'right', fontWeight: '700' },
-    barsArea: { flex: 1, flexDirection: 'row', height: 150, alignItems: 'flex-end', justifyContent: 'space-around', borderLeftWidth: 1, borderBottomWidth: 1, borderColor: '#eee' },
-    barGroup: { alignItems: 'center', width: 35 },
-    barStack: { flexDirection: 'row', alignItems: 'flex-end' },
-    bar: { width: 10 },
-    barLabel: { fontSize: 10, color: '#666', marginTop: 8, fontWeight: '600' },
+    chartCard: { backgroundColor: '#fff', borderRadius: 30, padding: 25, marginBottom: 25, elevation: 5, shadowColor: '#000', shadowOffset: { width: 0, height: 5 }, shadowOpacity: 0.05, shadowRadius: 15 },
+    chartHeaderRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 25 },
+    chartTitle: { fontSize: 17, fontWeight: '900', color: '#1a1a1a' },
+    legendRow: { flexDirection: 'row', gap: 12 },
+    legendItem: { flexDirection: 'row', alignItems: 'center', gap: 6 },
+    legendDot: { width: 10, height: 10, borderRadius: 5 },
+    legendText: { fontSize: 12, color: '#6c757d', fontWeight: '700', textTransform: 'uppercase' },
+    chartBody: { flexDirection: 'row', height: 200, alignItems: 'center' },
+    yAxis: { width: 45, height: 160, justifyContent: 'space-between', paddingRight: 8 },
+    axisLabel: { fontSize: 10, color: '#adb5bd', textAlign: 'right', fontWeight: '700' },
+    barsArea: { flex: 1, flexDirection: 'row', height: 160, alignItems: 'flex-end', borderLeftWidth: 1, borderBottomWidth: 1, borderColor: '#f1f3f5' },
+    barGroup: { flex: 1, alignItems: 'center' },
+    barStack: { flexDirection: 'row', alignItems: 'flex-end', gap: 3 },
+    bar: { width: 12 },
+    barLabel: { fontSize: 10, color: '#6c757d', marginTop: 12, fontWeight: '700' },
     
     analyticsSection: { marginTop: 10 },
-    sectionTitle: { fontSize: 18, fontWeight: '800', color: '#343a40', marginBottom: 15 },
-    analyticsCard: { backgroundColor: '#fff', borderRadius: 20, padding: 20, elevation: 2 },
-    analyticsHeader: { flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 15 },
-    analyticsTitle: { fontSize: 15, fontWeight: '700', color: '#343a40' },
-    analyticsItem: { flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 12, borderBottomWidth: 1, borderBottomColor: '#f8f9fa' },
-    analyticsLabel: { fontSize: 14, color: '#6c757d', fontWeight: '600' },
-    analyticsValue: { fontSize: 14, color: '#212529', fontWeight: '800' },
+    sectionTitle: { fontSize: 20, fontWeight: '900', color: '#1a1a1a', marginBottom: 18 },
+    analyticsCard: { backgroundColor: '#fff', borderRadius: 24, padding: 25, elevation: 4, shadowColor: '#000', shadowOffset: { width: 0, height: 5 }, shadowOpacity: 0.05, shadowRadius: 12 },
+    analyticsHeader: { flexDirection: 'row', alignItems: 'center', gap: 12, marginBottom: 20 },
+    analyticsTitle: { fontSize: 16, fontWeight: '800', color: '#1a1a1a' },
+    analyticsItem: { flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 15, borderBottomWidth: 1, borderBottomColor: '#f8f9fa' },
+    analyticsLabel: { fontSize: 14, color: '#6c757d', fontWeight: '700' },
+    analyticsValue: { fontSize: 15, color: '#1a1a1a', fontWeight: '900' },
 
     loaderContainer: { flex: 1, justifyContent: 'center', alignItems: 'center', paddingVertical: 100 },
-    detailsContainer: { flex: 1, padding: 20 },
+    detailsContainer: { flex: 1, paddingHorizontal: 20, paddingTop: 10 },
     detailsHeader: { marginBottom: 20 },
-    backButton: { marginBottom: 10 },
-    backButtonText: { color: '#dc3545', fontWeight: '700', fontSize: 14 },
-    detailsTitle: { fontSize: 24, fontWeight: '900', color: '#343a40' },
-    searchSection: { marginBottom: 15 },
-    searchWrapper: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', borderRadius: 12, paddingHorizontal: 15, borderWidth: 1, borderColor: '#e9ecef', height: 50 },
-    searchIcon: { marginRight: 10 },
-    searchInput: { flex: 1, fontSize: 16, color: '#343a40' },
-    tableContainer: { flex: 1, backgroundColor: '#fff', borderRadius: 20, overflow: 'hidden', elevation: 2, marginBottom: 20 },
-    tableHeader: { flexDirection: 'row', backgroundColor: '#e9ecef', paddingVertical: 12, paddingHorizontal: 15, borderBottomWidth: 1, borderBottomColor: '#dee2e6' },
-    headerCol: { fontSize: 12, fontWeight: '800', color: '#495057', textTransform: 'uppercase' },
-    tableRow: { flexDirection: 'row', paddingVertical: 15, paddingHorizontal: 15, borderBottomWidth: 1, borderBottomColor: '#f1f3f5', alignItems: 'center' },
-    rowColText: { fontSize: 14, color: '#343a40', fontWeight: '500' },
-    rowNameText: { fontSize: 15, color: '#343a40', fontWeight: '700' },
-    rowTypeText: { fontSize: 12, color: '#6c757d' },
-    emptyContainer: { flex: 1, justifyContent: 'center', alignItems: 'center', paddingVertical: 50 },
-    emptyText: { marginTop: 10, fontSize: 16, color: '#adb5bd', fontWeight: '600' },
+    detailsBackButton: { 
+        flexDirection: 'row', 
+        alignItems: 'center', 
+        marginBottom: 10,
+        backgroundColor: '#fff5f5',
+        paddingHorizontal: 12,
+        paddingVertical: 8,
+        borderRadius: 12,
+        alignSelf: 'flex-start',
+        borderWidth: 1,
+        borderColor: '#ffe3e3',
+        gap: 4
+    },
+    detailsBackText: { color: '#dc3545', fontWeight: '800', fontSize: 13, textTransform: 'uppercase', letterSpacing: 0.5 },
+    detailsTitle: { fontSize: 26, fontWeight: '900', color: '#1a1a1a', marginLeft: 5 },
+    searchSection: { marginBottom: 20 },
+    searchWrapper: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', borderRadius: 16, paddingHorizontal: 15, height: 55, elevation: 2, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.05, shadowRadius: 5 },
+    searchIcon: { marginRight: 12 },
+    searchInput: { flex: 1, fontSize: 16, color: '#1a1a1a', fontWeight: '500' },
+    tableContainer: { flex: 1, backgroundColor: '#fff', borderRadius: 24, overflow: 'hidden', elevation: 6, shadowColor: '#000', shadowOffset: { width: 0, height: 8 }, shadowOpacity: 0.1, shadowRadius: 15, marginBottom: 20 },
+    tableHeader: { flexDirection: 'row', backgroundColor: '#f8f9fa', paddingVertical: 18, paddingHorizontal: 20, borderBottomWidth: 1, borderBottomColor: '#f1f3f5' },
+    headerCol: { fontSize: 11, fontWeight: '800', color: '#adb5bd', textTransform: 'uppercase', letterSpacing: 1 },
+    tableRow: { flexDirection: 'row', paddingVertical: 20, paddingHorizontal: 20, borderBottomWidth: 1, borderBottomColor: '#f8f9fa', alignItems: 'center' },
+    rowColText: { fontSize: 14, color: '#1a1a1a', fontWeight: '600' },
+    rowNameText: { fontSize: 15, color: '#1a1a1a', fontWeight: '800' },
+    rowTypeText: { fontSize: 12, color: '#6c757d', fontWeight: '500', marginTop: 2 },
+    emptyContainer: { flex: 1, justifyContent: 'center', alignItems: 'center', paddingVertical: 80 },
+    emptyText: { marginTop: 15, fontSize: 16, color: '#adb5bd', fontWeight: '700' },
 });

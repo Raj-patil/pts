@@ -59,3 +59,38 @@
 [2026-03-12T11:50:23.551Z] GET /api/tins 
 [2026-03-12T11:51:58.002Z] GET /api/revenue 
 [2026-03-12T11:51:59.500Z] GET /api/tins 
+[2026-03-12T15:39:23.867Z] POST /api/login {"email":"rp686418@gmail.com","password":"Raj@8601"}
+[2026-03-12T15:55:09.390Z] POST /api/login {"email":"rp686418@gmail.com","password":"Raj@8601"}
+[2026-03-12T15:55:17.094Z] POST /api/login {"email":"rp686418@gmail.com","password":"Raj@8601"}
+[2026-03-12T15:55:26.941Z] GET /api/tins 
+[2026-03-12T15:55:41.059Z] GET /api/revenue 
+[2026-03-12T15:55:44.542Z] GET /api/expenses 
+[2026-03-12T16:01:32.723Z] POST /api/login {"email":"rp686418@gmail.com","password":"Raj@8601"}
+[2026-03-12T16:01:45.975Z] GET /api/tins?tin_type=A-L%20Kachha 
+[2026-03-12T16:01:50.350Z] GET /api/tins 
+[2026-03-12T16:01:51.654Z] GET /api/revenue 
+[2026-03-12T16:02:29.345Z] POST /api/login {"email":"rp686418@gmail.com","password":"Raj@8601"}
+[2026-03-12T16:02:35.040Z] GET /api/tins 
+[2026-03-12T16:02:37.482Z] GET /api/revenue 
+[2026-03-12T16:02:43.980Z] GET /api/expenses 
+[2026-03-12T16:02:52.766Z] GET /api/tins 
+[2026-03-12T16:02:56.286Z] GET /api/revenue 
+[2026-03-12T16:03:07.340Z] GET /api/expenses 
+[2026-03-12T16:08:31.269Z] POST /api/login {"email":"rp686418@gmail.com","password":"Raj@8601"}
+[2026-03-12T16:08:34.737Z] GET /api/tins 
+[2026-03-12T16:08:36.603Z] GET /api/revenue 
+[2026-03-12T16:08:37.520Z] GET /api/expenses 
+[2026-03-12T16:08:53.682Z] GET /api/tins?tin_type=A-L%20Kachha 
+[2026-03-12T16:09:04.051Z] GET /api/tins?tin_type=A-L%20Kachha 
+[2026-03-12T16:09:09.307Z] GET /api/tins 
+[2026-03-12T16:09:12.462Z] GET /api/tins 
+[2026-03-12T16:09:14.560Z] GET /api/revenue 
+[2026-03-12T16:09:24.057Z] GET /api/tins 
+[2026-03-12T16:09:24.877Z] GET /api/revenue 
+[2026-03-12T16:09:26.579Z] GET /api/expenses 
+[2026-03-12T16:13:52.016Z] POST /api/login {"email":"rp686418@gmail.com","password":"Raj@8601"}
+[2026-03-12T16:13:54.844Z] GET /api/tins 
+[2026-03-12T16:14:01.807Z] GET /api/revenue 
+[2026-03-12T16:18:55.088Z] POST /api/login {"email":"rp686418@gmail.com","password":"Raj@8601"}
+[2026-03-12T16:18:59.246Z] GET /api/expenses 
+[2026-03-12T16:19:01.425Z] GET /api/revenue 

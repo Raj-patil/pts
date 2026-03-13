@@ -68,20 +68,19 @@ export default function HomeScreen() {
       <View style={styles.mainWrapper}>
         {/* Header */}
         <View style={styles.header}>
-          <View>
-            <Text style={styles.greeting}>Patil Tin Suppliers</Text>
+          <View style={styles.headerContent}>
+            <Text style={styles.headerTitle}>Patil Tin Suppliers</Text>
             <View style={styles.locationContainer}>
-              <MapPin size={14} color="#6c757d" />
-              <Text style={styles.locationText}>Surat, Gujarat</Text>
+              <MapPin size={12} color="#6c757d" />
+              <Text style={styles.headerSub}>Surat, Gujarat</Text>
             </View>
           </View>
           <TouchableOpacity style={styles.profileButton}>
-            <User size={24} color="#343a40" />
+            <User size={22} color="#1a1a1a" />
           </TouchableOpacity>
         </View>
 
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
-
           {/* Section Title */}
           <View style={styles.sectionHeader}>
             <Text style={styles.sectionTitle}>Our Products</Text>
@@ -110,7 +109,7 @@ export default function HomeScreen() {
               style={styles.closeButton}
               onPress={() => setSelectedProduct(null)}
             >
-              <X size={24} color="#343a40" />
+              <X size={24} color="#1a1a1a" />
             </TouchableOpacity>
 
             <ScrollView showsVerticalScrollIndicator={false}>
@@ -140,7 +139,9 @@ export default function HomeScreen() {
                 </View>
 
                 <TouchableOpacity style={styles.orderButton}>
-                  <Text style={styles.orderButtonText}>Inquire Now</Text>
+                  <LinearGradient colors={['#dc3545', '#9b1b28']} style={styles.orderGradient}>
+                    <Text style={styles.orderButtonText}>Inquire Now</Text>
+                  </LinearGradient>
                 </TouchableOpacity>
               </View>
             </ScrollView>
@@ -161,38 +162,41 @@ const styles = StyleSheet.create({
     maxWidth: 1200,
     width: '100%',
     alignSelf: 'center',
-    backgroundColor: '#f8f9fa',
+    backgroundColor: '#f1f3f5',
   },
   header: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 20,
+    justifyContent: 'space-between',
+    paddingHorizontal: 25,
     paddingVertical: 15,
-    paddingTop: Platform.OS === 'android' ? 40 : 15,
+    paddingTop: Platform.OS === 'android' ? (StatusBar.currentHeight || 0) + 15 : 15,
     backgroundColor: '#fff',
     borderBottomWidth: 1,
-    borderBottomColor: '#f1f3f5',
+    borderBottomColor: '#e9ecef',
   },
-  greeting: {
+  headerContent: { flex: 1 },
+  headerTitle: {
     fontSize: 22,
-    fontWeight: '800',
+    fontWeight: '900',
     color: '#1a1a1a',
+    letterSpacing: -0.5,
+  },
+  headerSub: {
+    fontSize: 12,
+    color: '#6c757d',
+    fontWeight: '700',
+    marginLeft: 4,
   },
   locationContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 2,
   },
-  locationText: {
-    fontSize: 13,
-    color: '#6c757d',
-    marginLeft: 4,
-  },
   profileButton: {
-    width: 45,
-    height: 45,
-    borderRadius: 23,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
     backgroundColor: '#f8f9fa',
     borderWidth: 1,
     borderColor: '#e9ecef',
@@ -202,69 +206,23 @@ const styles = StyleSheet.create({
   scrollContent: {
     paddingBottom: 40,
   },
-  banner: {
-    margin: 20,
-    borderRadius: 20,
-    padding: 30,
-    flexDirection: 'row',
-    overflow: 'hidden',
-    elevation: 5,
-    shadowColor: '#dc3545',
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.2,
-    shadowRadius: 15,
-  },
-  bannerContent: {
-    flex: 1,
-    zIndex: 1,
-  },
-  bannerTitle: {
-    color: '#fff',
-    fontSize: 28,
-    fontWeight: '800',
-    textShadowColor: 'rgba(0, 0, 0, 0.1)',
-    textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 2,
-  },
-  bannerSubTitle: {
-    color: 'rgba(255,255,255,0.9)',
-    fontSize: 16,
-    marginTop: 8,
-    marginBottom: 25,
-  },
-  bannerButton: {
-    backgroundColor: '#fff',
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    borderRadius: 12,
-    alignSelf: 'flex-start',
-  },
-  bannerButtonText: {
-    color: '#dc3545',
-    fontWeight: '700',
-    fontSize: 14,
-  },
-  bannerImageContainer: {
-    position: 'absolute',
-    right: -10,
-    bottom: -15,
-  },
   sectionHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 20,
-    marginVertical: 15,
+    paddingHorizontal: 25,
+    marginVertical: 20,
   },
   sectionTitle: {
     fontSize: 20,
-    fontWeight: '800',
+    fontWeight: '900',
     color: '#1a1a1a',
   },
   seeAllText: {
     color: '#dc3545',
-    fontSize: 15,
-    fontWeight: '700',
+    fontSize: 14,
+    fontWeight: '800',
+    textTransform: 'uppercase',
   },
   grid: {
     flexDirection: 'row',
@@ -275,13 +233,13 @@ const styles = StyleSheet.create({
   card: {
     width: isWeb ? (width > 1000 ? '23%' : '31%') : (width - 50) / 2,
     backgroundColor: '#fff',
-    borderRadius: 15,
+    borderRadius: 20,
     marginBottom: 20,
     marginHorizontal: isWeb ? '1%' : 5,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.08,
-    shadowRadius: 12,
+    shadowOpacity: 0.06,
+    shadowRadius: 10,
     elevation: 4,
     overflow: 'hidden',
     borderWidth: 1,
@@ -301,7 +259,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    height: '35%',
+    height: '40%',
   },
   categoryBadge: {
     position: 'absolute',
@@ -311,13 +269,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 5,
     borderRadius: 8,
-    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
   },
   categoryText: {
-    fontSize: 11,
-    fontWeight: '800',
+    fontSize: 10,
+    fontWeight: '900',
     color: '#dc3545',
     textTransform: 'uppercase',
+    letterSpacing: 0.5,
   },
   cardInfo: {
     padding: 15,
@@ -327,7 +285,7 @@ const styles = StyleSheet.create({
   },
   productName: {
     fontSize: 15,
-    fontWeight: '700',
+    fontWeight: '800',
     color: '#1a1a1a',
     flex: 1,
   },
@@ -336,112 +294,118 @@ const styles = StyleSheet.create({
   },
   modalOverlay: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.6)',
+    backgroundColor: 'rgba(0,0,0,0.7)',
     justifyContent: 'flex-end',
   },
   modalContent: {
     backgroundColor: '#fff',
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
-    height: '90%',
+    borderTopLeftRadius: 35,
+    borderTopRightRadius: 35,
+    height: '92%',
     width: isWeb ? '50%' : '100%',
     alignSelf: 'center',
     overflow: 'hidden',
   },
   closeButton: {
     position: 'absolute',
-    top: 20,
-    right: 20,
+    top: 25,
+    right: 25,
     zIndex: 10,
     backgroundColor: '#fff',
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
     justifyContent: 'center',
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 8,
+    shadowOpacity: 0.15,
+    shadowRadius: 10,
     elevation: 8,
   },
   modalImage: {
     width: '100%',
-    height: 350,
+    height: 380,
   },
   modalDetails: {
     padding: 30,
   },
   modalCategory: {
     color: '#dc3545',
-    fontWeight: '800',
-    fontSize: 14,
+    fontWeight: '900',
+    fontSize: 13,
     textTransform: 'uppercase',
-    letterSpacing: 1,
+    letterSpacing: 1.5,
   },
   modalTitle: {
-    fontSize: 32,
+    fontSize: 34,
     fontWeight: '900',
     color: '#1a1a1a',
     marginTop: 8,
+    letterSpacing: -1,
   },
   divider: {
     height: 1,
     backgroundColor: '#f1f3f5',
-    marginVertical: 25,
+    marginVertical: 30,
   },
   detailLabel: {
     fontSize: 18,
-    fontWeight: '800',
+    fontWeight: '900',
     color: '#1a1a1a',
     marginBottom: 12,
   },
   detailText: {
-    fontSize: 15,
-    color: '#4a4a4a',
-    lineHeight: 24,
+    fontSize: 16,
+    color: '#495057',
+    lineHeight: 26,
+    fontWeight: '500',
   },
   specGrid: {
     flexDirection: 'row',
-    marginTop: 30,
-    gap: 20,
+    marginTop: 35,
+    gap: 15,
   },
   specItem: {
     flex: 1,
     backgroundColor: '#f8f9fa',
-    padding: 20,
-    borderRadius: 18,
+    padding: 22,
+    borderRadius: 20,
     borderWidth: 1,
     borderColor: '#e9ecef',
   },
   specLabel: {
-    fontSize: 13,
-    color: '#6c757d',
-    fontWeight: '600',
-    marginBottom: 6,
+    fontSize: 11,
+    color: '#adb5bd',
+    fontWeight: '800',
+    marginBottom: 8,
     textTransform: 'uppercase',
+    letterSpacing: 1,
   },
   specValue: {
     fontSize: 18,
-    fontWeight: '800',
+    fontWeight: '900',
     color: '#1a1a1a',
   },
   orderButton: {
-    backgroundColor: '#dc3545',
-    height: 60,
-    borderRadius: 18,
+    marginTop: 40,
+    borderRadius: 20,
+    overflow: 'hidden',
+    elevation: 10,
+    shadowColor: '#dc3545',
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.3,
+    shadowRadius: 20,
+  },
+  orderGradient: {
+    height: 65,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 40,
-    shadowColor: '#dc3545',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.3,
-    shadowRadius: 15,
-    elevation: 10,
   },
   orderButtonText: {
     color: '#fff',
     fontSize: 20,
-    fontWeight: '800',
+    fontWeight: '900',
+    letterSpacing: 0.5,
   },
 });

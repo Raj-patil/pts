@@ -24,7 +24,7 @@ import { ChevronLeft as ChevronLeftIcon, ChevronRight as ChevronRightIcon } from
 
 const { width } = Dimensions.get('window');
 const isWeb = Platform.OS === 'web';
-const API_URL = Platform.OS === 'web' ? 'http://localhost:5001/api' : 'http://192.168.0.67:5001/api';
+const API_URL = Platform.OS === 'web' ? 'http://localhost:5001/api' : 'http://192.168.1.7:5001/api';
 
 type TinEntry = {
     id: number;
@@ -459,11 +459,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         paddingHorizontal: 20,
-        height: 60,
         backgroundColor: '#fff',
         borderBottomWidth: 1,
         borderBottomColor: '#f1f3f5',
-        paddingTop: Platform.OS === 'android' ? 20 : 0,
+        paddingTop: Platform.OS === 'android' ? (StatusBar.currentHeight || 0) + 15 : 15,
+        paddingBottom: 15,
     },
     backButton: {
         width: 40,
